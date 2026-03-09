@@ -130,8 +130,8 @@ pnpm start:dev
 | `POST`   | `/auth/register` | Registrar usuário | ❌   |
 | `POST`   | `/auth/login`    | Login             | ❌   |
 | `GET`    | `/users/me`      | Perfil do usuário | ✅   |
-| `PATCH`  | `/users/edit`    | Perfil do usuário | ✅   |
-| `DELETE` | `/users/`        | Perfil do usuário | ✅   |
+| `PATCH`  | `/users/edit`    | Editar usuário    | ✅   |
+| `DELETE` | `/users/`        | Apagar usuário    | ✅   |
 
 ---
 
