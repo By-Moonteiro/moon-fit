@@ -69,4 +69,12 @@ export class UsersService {
 
     return this.userRepo.update(userEmail, data);
   }
+
+  async delete(userId: string) {
+    const existingUser = await this.userRepo.findById(userId);
+
+    if (!existingUser) throw new NotFoundException();
+
+    return this.userRepo.delete(userId);
+  }
 }
