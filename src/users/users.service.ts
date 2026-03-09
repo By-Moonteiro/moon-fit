@@ -29,7 +29,7 @@ export class UsersService {
     const user = await this.userRepo.findById(userId);
 
     if (!user) {
-      return null;
+      throw new NotFoundException();
     }
 
     return user;
