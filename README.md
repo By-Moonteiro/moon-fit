@@ -67,7 +67,7 @@ src/
 
 ```
 
-> Com exceção do auth/ e prisma/, todos os módulos seguem a estrutura padrão: controller, service, module, dtos/ e \*.spec.ts para testes unitários.
+> Com exceção do auth/ e prisma/, todos os módulos seguem a estrutura padrão: controller, service, module, dtos/, repositories/, entities/ e \*.spec.ts para testes unitários.
 
 ---
 
@@ -125,11 +125,13 @@ pnpm start:dev
 
 ## 📡 Endpoints (atuais)
 
-| Método | Rota             | Descrição         | Auth |
-| ------ | ---------------- | ----------------- | ---- |
-| `POST` | `/auth/register` | Registrar usuário | ❌   |
-| `POST` | `/auth/login`    | Login             | ❌   |
-| `GET`  | `/users/me`      | Perfil do usuário | ✅   |
+| Método   | Rota             | Descrição         | Auth |
+| -------- | ---------------- | ----------------- | ---- |
+| `POST`   | `/auth/register` | Registrar usuário | ❌   |
+| `POST`   | `/auth/login`    | Login             | ❌   |
+| `GET`    | `/users/me`      | Perfil do usuário | ✅   |
+| `PATCH`  | `/users/edit`    | Perfil do usuário | ✅   |
+| `DELETE` | `/users/`        | Perfil do usuário | ✅   |
 
 ---
 
