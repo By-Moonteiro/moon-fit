@@ -1,21 +1,22 @@
 import {
   ConflictException,
+  Inject,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
-import { RegisterDto } from './dtos/create-user.dto';
 import * as bcrypt from 'bcrypt';
-import { UpdateUserDto } from './dtos/update-user.dto';
+import { UsersRepository } from './repositories/users.repository';
+import { CreateUserData, UpdateUserInput } from './entities/user.entity';
 
 @Injectable()
 export class UsersService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    @Inject(UsersRepository)
+    private readonly userRepo: UsersRepository,
+  ) {}
 
   async findByEmail(email: string) {
-    const user = await this.prisma.user.findUnique({
-      where: { email },
-    });
+    const user = await this.userRepo.findByEmail(email);
 
     if (!user) {
       return null;
@@ -24,17 +25,8 @@ export class UsersService {
     return user;
   }
 
-  async findById(id: string) {
-    const user = await this.prisma.user.findUnique({
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        createdAt: true,
-        updatedAt: true,
-      },
-      where: { id },
-    });
+  async findById(userId: string) {
+    const user = await this.userRepo.findById(userId);
 
     if (!user) {
       return null;
@@ -43,8 +35,8 @@ export class UsersService {
     return user;
   }
 
-  async create({ name, email, password }: RegisterDto) {
-    const existingUser = await this.findByEmail(email);
+  async create({ name, email, password }: CreateUserData) {
+    const existingUser = await this.userRepo.findByEmail(email);
 
     if (existingUser) {
       throw new ConflictException();
@@ -52,51 +44,29 @@ export class UsersService {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    return this.prisma.user.create({
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        createdAt: true,
-        updatedAt: true,
-      },
-      data: {
-        name,
-        email,
-        password: hashedPassword,
-      },
-    });
+    return this.userRepo.create({ email, password: hashedPassword, name });
   }
 
-  async update(userEmail: string, { name, email, password }: UpdateUserDto) {
-    const existingUser = await this.findByEmail(userEmail);
+  async update(userEmail: string, { name, email, password }: UpdateUserInput) {
+    const existingUser = await this.userRepo.findByEmail(userEmail);
 
     if (!existingUser) throw new NotFoundException();
 
     if (email && email !== existingUser.email) {
-      const emailInUse = await this.findByEmail(email);
+      const emailInUse = await this.userRepo.findByEmail(email);
 
       if (emailInUse) throw new ConflictException();
     }
 
-    const hashedPassword = password
-      ? await bcrypt.hash(password, 10)
-      : existingUser.password;
+    const data = {
+      email: email !== undefined ? email : existingUser.email,
+      password:
+        password !== undefined
+          ? await bcrypt.hash(password, 10)
+          : existingUser.password,
+      name: name !== undefined ? name : existingUser.name,
+    };
 
-    return this.prisma.user.update({
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        createdAt: true,
-        updatedAt: true,
-      },
-      where: { email: userEmail },
-      data: {
-        name: name ?? existingUser.name,
-        email: email ?? existingUser.email,
-        password: hashedPassword,
-      },
-    });
+    return this.userRepo.update(userEmail, data);
   }
 }
