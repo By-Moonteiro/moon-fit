@@ -25,9 +25,7 @@ Projeto pessoal de estudo e uso real, focado em arquitetura backend sólida com 
 
 ## 📚 Sobre o Projeto
 
-**MoonFit** é uma API REST para gerenciamento de fichas de treino, desenvolvida com foco em aprendizado prático de NestJS, arquitetura backend e boas práticas.
-
-O projeto resolve um problema real — controle de treinos — e serve como laboratório para aplicar conceitos de forma progressiva: autenticação, estrutura em módulos, testes e performance.
+**MoonFit** é uma API REST para gerenciamento de fichas de treino, desenvolvida com foco em aprendizado prático de NestJS, arquitetura backend e boas práticas. O projeto nasceu de um problema real — academias sem fichas de treino e a gambiarra de anotar exercício no WhatsApp — e serve como laboratório para aplicar conceitos de forma progressiva.
 
 > Este repositório é público e evolui junto com meu aprendizado. Sinta-se livre para explorar e acompanhar o progresso.
 
@@ -199,6 +197,7 @@ Conceitos aplicados neste projeto:
 - [x] Autenticação JWT com Guards e Decorators
 - [x] Validação com class-validator
 - [x] Documentacao da API com Swagger + Scalar (API Reference)
+- [x] Uso de ferramentas de IA (Claude, Copilot) como apoio no aprendizado e revisão de decisões técnicas
 
 ---
 
