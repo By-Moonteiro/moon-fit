@@ -1,16 +1,13 @@
-import { useState } from "react"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 import { MoonLogo } from "./components/MoonLogo"
+import { type LoginData, loginSchema } from "./schemas/login.schema"
 
 export const App = () => {
-  const [form, setForm] = useState({
-    email: '',
-    password: ''
-  })
 
-  const handleSubmit = (e: React.SubmitEvent) => {
-    e.preventDefault()
-    console.log(form)
-  }
+  const  { register, handleSubmit, formState: { errors } }  = useForm<LoginData>({
+    resolver: zodResolver(loginSchema)
+  })
 
   return (
     <div className='min-h-screen bg-slate-950 flex items-center justify-center'>
@@ -21,12 +18,14 @@ export const App = () => {
         <div>
           <p className='text-white text-center'>Entre na sua conta</p>
 
-          <form className='text-purple-300 flex flex-col gap-4' onSubmit={handleSubmit}> 
+          <form className='text-purple-300 flex flex-col gap-4' onSubmit={handleSubmit((data) => console.log(data))}> 
             <label className='font-semibold  text-purple-300 text-sm mb-1 block' htmlFor="email">Email: </label>
-            <input className='w-full bg-gray-800 text-white rounded-lg p-3 outline-none' type="email" name='email' placeholder='Digite seu email' id='email' value={form.email} onChange={(e) => setForm({...form, email: e.target.value})} />
+            <input className='w-full bg-gray-800 text-white rounded-lg p-3 outline-none' type="email" placeholder='Digite seu email' id='email' { ...register('email')} />
+            {errors.email && <span className='text-red-400 text-sm'>{errors.email.message}</span>}
 
             <label className='font-semibold text-purple-300 text-sm mb-1 block' htmlFor="password">Password: </label>
-            <input className='w-full bg-gray-800 text-white rounded-lg p-3 outline-none' type="password" name='password' placeholder='Digite sua senha' id='password' value={form.password} onChange={(e) => setForm({...form, password: e.target.value})} />
+            <input className='w-full bg-gray-800 text-white rounded-lg p-3 outline-none' type="password" placeholder='Digite sua senha' id='password' { ...register('password') } />
+            {errors.password && <span className='text-red-400 text-sm'>{errors.password.message}</span>}
             
             <button className='text-white rounded-xl w-full p-2 bg-purple-700 hover:bg-purple-600' type='submit' >Entrar</button>
           </form>
