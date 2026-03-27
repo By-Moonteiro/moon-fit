@@ -5,6 +5,7 @@ import { registerSchema, type RegisterData } from "../schemas/register.schema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { api } from "../lib/axios"
 import { useMutation } from "@tanstack/react-query"
+import { AuthTabs } from '../components/AuthTabs'
 
 export const RegisterPage = () => {
   const  { register, handleSubmit, formState: { errors } }  = useForm<RegisterData>({
@@ -32,8 +33,9 @@ export const RegisterPage = () => {
         
         <div>
           <p className='text-white text-center'>Crie sua conta</p>
+          <AuthTabs />
 
-          <form className='text-purple-300 flex flex-col gap-4' onSubmit={handleSubmit(onSubmit)}> 
+          <form className='text-purple-300 flex flex-col gap-3' onSubmit={handleSubmit(onSubmit)}> 
              <label className='font-semibold  text-purple-300 text-sm mb-1 block' htmlFor="name">Name </label>
             <input className='w-full bg-gray-800 text-white rounded-lg p-3 outline-none' type="name" placeholder='Digite seu nome' id='name' { ...register('name')} />
             {errors.name && <span className='text-red-400 text-sm'>{errors.name.message}</span>

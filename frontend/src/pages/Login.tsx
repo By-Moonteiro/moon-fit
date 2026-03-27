@@ -5,6 +5,7 @@ import { loginSchema, type LoginData } from "../schemas/login.schema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { api } from "../lib/axios"
 import { useMutation } from "@tanstack/react-query"
+import { AuthTabs } from '../components/AuthTabs'
 
 export const LoginPage = () => {
   const  { register, handleSubmit, formState: { errors } }  = useForm<LoginData>({
@@ -33,8 +34,9 @@ export const LoginPage = () => {
         
         <div>
           <p className='text-white text-center'>Entre na sua conta</p>
+          <AuthTabs />
 
-          <form className='text-purple-300 flex flex-col gap-4' onSubmit={handleSubmit(onSubmit)}> 
+          <form className='text-purple-300 flex flex-col gap-3' onSubmit={handleSubmit(onSubmit)}> 
             <label className='font-semibold  text-purple-300 text-sm mb-1 block' htmlFor="email">Email </label>
             <input className='w-full bg-gray-800 text-white rounded-lg p-3 outline-none' type="email" placeholder='Digite seu email' id='email' { ...register('email')} />
             {errors.email && <span className='text-red-400 text-sm'>{errors.email.message}</span>}
