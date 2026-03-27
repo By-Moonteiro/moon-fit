@@ -1,17 +1,23 @@
+import '../index.css'
 import { useForm } from "react-hook-form"
 import { MoonLogo } from "../components/MoonLogo"
 import { loginSchema, type LoginData } from "../schemas/login.schema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { api } from "../lib/axios"
+import { useMutation } from "@tanstack/react-query"
 
 export const LoginPage = () => {
   const  { register, handleSubmit, formState: { errors } }  = useForm<LoginData>({
     resolver: zodResolver(loginSchema)
   })
 
+  const { mutateAsync, isPending } = useMutation({
+    mutationFn: (data: LoginData) => api.post('/auth/login', data)
+  })
+
   async function onSubmit(data: LoginData) {
   try {
-    const response = await api.post('/auth/login', data)
+    const response = await mutateAsync(data)
     localStorage.setItem('token', response.data.access_token)
     console.log(localStorage.getItem('token'))
   } catch (error) {
@@ -37,7 +43,7 @@ export const LoginPage = () => {
             <input className='w-full bg-gray-800 text-white rounded-lg p-3 outline-none' type="password" placeholder='Digite sua senha' id='password' { ...register('password') } />
             {errors.password && <span className='text-red-400 text-sm'>{errors.password.message}</span>}
             
-            <button className='text-white rounded-xl w-full p-2 bg-purple-700 hover:bg-purple-600' type='submit' >Entrar</button>
+            <button className='text-white rounded-xl w-full p-2 bg-purple-700 hover:bg-purple-600' type='submit' disabled={isPending} >{isPending ? 'Entrando...' : 'Entrar'}</button>
           </form>
 
         </div>
