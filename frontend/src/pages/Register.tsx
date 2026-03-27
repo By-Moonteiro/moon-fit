@@ -20,7 +20,7 @@ export const RegisterPage = () => {
     await mutateAsync(data)
     console.log('Usuário registrado com sucesso')
   } catch (error) {
-    console.error('Erro ao fazer login:', error)
+    console.error('Erro ao se registrar:', error)
   }
 }
 
@@ -51,8 +51,6 @@ export const RegisterPage = () => {
           </form>
 
         </div>
-        
-        
       </div>
     </div>
   )

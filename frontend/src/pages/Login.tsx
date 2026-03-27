@@ -35,11 +35,11 @@ export const LoginPage = () => {
           <p className='text-white text-center'>Entre na sua conta</p>
 
           <form className='text-purple-300 flex flex-col gap-4' onSubmit={handleSubmit(onSubmit)}> 
-            <label className='font-semibold  text-purple-300 text-sm mb-1 block' htmlFor="email">Email: </label>
+            <label className='font-semibold  text-purple-300 text-sm mb-1 block' htmlFor="email">Email </label>
             <input className='w-full bg-gray-800 text-white rounded-lg p-3 outline-none' type="email" placeholder='Digite seu email' id='email' { ...register('email')} />
             {errors.email && <span className='text-red-400 text-sm'>{errors.email.message}</span>}
 
-            <label className='font-semibold text-purple-300 text-sm mb-1 block' htmlFor="password">Password: </label>
+            <label className='font-semibold text-purple-300 text-sm mb-1 block' htmlFor="password">Password </label>
             <input className='w-full bg-gray-800 text-white rounded-lg p-3 outline-none' type="password" placeholder='Digite sua senha' id='password' { ...register('password') } />
             {errors.password && <span className='text-red-400 text-sm'>{errors.password.message}</span>}
             
