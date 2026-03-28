@@ -7,7 +7,6 @@
 ### Plataforma de gerenciamento de treinos
 
 ![Status](https://img.shields.io/badge/Status-Em%20desenvolvimento-yellow?style=for-the-badge)
-[![License](https://img.shields.io/badge/Licença-MIT-green?style=for-the-badge)](LICENSE)
 
 </div>
 
