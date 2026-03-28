@@ -1,3 +1,5 @@
+[Voltar ao README](../README.md)
+
 # Ideias e Features Futuras
 
 > Este arquivo é um dump organizado de ideias.
