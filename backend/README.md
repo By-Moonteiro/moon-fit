@@ -59,7 +59,7 @@ src/
 └── test/
 ```
 
-> Com exceção de `auth/` e `prisma/`, todos os módulos seguem a estrutura padrão: controller, service, module, dtos/, repositories/, entities/ e *.spec.ts para testes unitários.
+> Com exceção de `auth/` e `prisma/`, todos os módulos seguem a estrutura padrão: controller, service, module, dtos/, repositories/, entities/ e \*.spec.ts para testes unitários.
 
 ---
 
@@ -118,29 +118,29 @@ pnpm start:dev
 
 ### Auth
 
-| Método | Rota | Descrição | Auth |
-|---|---|---|---|
-| `POST` | `/auth/register` | Registrar usuário | ❌ |
-| `POST` | `/auth/login` | Login | ❌ |
+| Método | Rota             | Descrição         | Auth |
+| ------ | ---------------- | ----------------- | ---- |
+| `POST` | `/auth/register` | Registrar usuário | ❌   |
+| `POST` | `/auth/login`    | Login             | ❌   |
 
 ### Users
 
-| Método | Rota | Descrição | Auth |
-|---|---|---|---|
-| `GET` | `/users/me` | Perfil do usuário | ✅ |
-| `PATCH` | `/users/edit` | Editar usuário | ✅ |
-| `DELETE` | `/users/` | Apagar usuário | ✅ |
+| Método   | Rota          | Descrição         | Auth |
+| -------- | ------------- | ----------------- | ---- |
+| `GET`    | `/users/me`   | Perfil do usuário | ✅   |
+| `PATCH`  | `/users/edit` | Editar usuário    | ✅   |
+| `DELETE` | `/users/`     | Apagar usuário    | ✅   |
 
 ### Exercises
 
-| Método | Rota | Descrição | Auth |
-|---|---|---|---|
-| `POST` | `/exercise/` | Registra exercício | ✅ |
-| `GET` | `/exercise/` | Buscar todos os exercícios | ✅ |
-| `GET` | `/exercise/:name` | Buscar por nome | ✅ |
-| `GET` | `/exercise/completed/:isCompleted` | Filtrado por status | ✅ |
-| `PATCH` | `/exercise/:name` | Editar exercício | ✅ |
-| `DELETE` | `/exercise/:name` | Apagar exercício | ✅ |
+| Método   | Rota                               | Descrição                  | Auth |
+| -------- | ---------------------------------- | -------------------------- | ---- |
+| `POST`   | `/exercise/`                       | Registra exercício         | ✅   |
+| `GET`    | `/exercise/`                       | Buscar todos os exercícios | ✅   |
+| `GET`    | `/exercise/:name`                  | Buscar por nome            | ✅   |
+| `GET`    | `/exercise/completed/:isCompleted` | Filtrado por status        | ✅   |
+| `PATCH`  | `/exercise/:name`                  | Editar exercício           | ✅   |
+| `DELETE` | `/exercise/:name`                  | Apagar exercício           | ✅   |
 
 ---
 
@@ -190,7 +190,3 @@ docker compose down -v && docker compose up -d
 - [x] Uso de ferramentas de IA (Claude, Copilot) como apoio no aprendizado
 
 ---
-
-## 📄 Licença
-
-MIT

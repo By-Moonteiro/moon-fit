@@ -22,10 +22,10 @@ moon-fit/
 └── docs/       # Assets e documentação geral
 ```
 
-| Parte | Stack principal | README |
-|---|---|---|
-| Backend | NestJS, PostgreSQL, Prisma, Docker | [backend/README.md](backend/README.md) |
-| Frontend | React, Vite, Tailwind, Shadcn | [frontend/README.md](frontend/README.md) |
+| Parte    | Stack principal                    | README                                   |
+| -------- | ---------------------------------- | ---------------------------------------- |
+| Backend  | NestJS, PostgreSQL, Prisma, Docker | [backend/README.md](backend/README.md)   |
+| Frontend | React, Vite, Tailwind, Shadcn      | [frontend/README.md](frontend/README.md) |
 
 ---
 
@@ -38,7 +38,3 @@ moon-fit/
 - **Fase 5** — Deploy
 
 ---
-
-## 📄 Licença
-
-MIT

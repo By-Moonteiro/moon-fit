@@ -25,6 +25,19 @@ Frontend do MoonFit — interface para autenticação e gerenciamento de treinos
 
 ---
 
+## 📸 Preview
+
+<details open>
+<summary>Tela de Login e Cadastro</summary>
+
+<br/>
+
+<div align="center">
+  <img src="../docs/assets/previews/login-&-register-preview.gif" alt="Login & Register Preview" width="420"/>
+</div>
+
+</details>
+
 ## 🎯 Funcionalidades
 
 - [x] Tela de Login e Register (com tabs animadas)
@@ -95,10 +108,10 @@ pnpm dev
 
 ## 🗺️ Rotas
 
-| Rota | Página | Auth |
-|---|---|---|
-| `/` | Login | ❌ |
-| `/register` | Register | ❌ |
+| Rota        | Página   | Auth |
+| ----------- | -------- | ---- |
+| `/`         | Login    | ❌   |
+| `/register` | Register | ❌   |
 
 ---
 
@@ -121,7 +134,3 @@ VITE_API_URL=http://localhost:3333
 - [x] Roteamento com React Router
 
 ---
-
-## 📄 Licença
-
-MIT
