@@ -49,6 +49,9 @@ Frontend do MoonFit — interface para autenticação e gerenciamento de treinos
 
 ## 🏗️ Estrutura
 
+<details>
+<summary>Ver estrutura de arquivos</summary>
+
 ```
 src/
 ├── components/
@@ -65,6 +68,8 @@ src/
 ├── main.tsx
 └── index.css
 ```
+
+</details>
 
 ---
 

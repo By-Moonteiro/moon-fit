@@ -37,6 +37,9 @@ API REST para gerenciamento de fichas de treino, desenvolvida com foco em aprend
 
 ## 🏗️ Arquitetura
 
+<details>
+<summary>Ver estrutura de arquivos</summary>
+
 ```
 src/
 ├── main.ts
@@ -60,6 +63,8 @@ src/
 ```
 
 > Com exceção de `auth/` e `prisma/`, todos os módulos seguem a estrutura padrão: controller, service, module, dtos/, repositories/, entities/ e \*.spec.ts para testes unitários.
+
+</details>
 
 ---
 
