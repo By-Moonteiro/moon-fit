@@ -2,14 +2,38 @@
 
 <img src="docs/assets/logo.svg" alt="MoonFit" width="520"/>
 
-### Plataforma de gerenciamento de treinos
+# MoonFit
 
-Projeto pessoal de estudo e uso real — nasceu de um problema real: academias sem fichas e a gambiarra de anotar exercício no WhatsApp.
+### Plataforma de gerenciamento de treinos
 
 ![Status](https://img.shields.io/badge/Status-Em%20desenvolvimento-yellow?style=for-the-badge)
 [![License](https://img.shields.io/badge/Licença-MIT-green?style=for-the-badge)](LICENSE)
 
 </div>
+
+## 🎯 Por que o MoonFit existe?
+
+Muitas academias não fornecem fichas estruturadas.
+Alunos acabam registrando treinos em notas soltas, WhatsApp ou memória.
+
+O MoonFit nasce como uma tentativa de resolver esse problema
+criando um sistema simples, pessoal e reutilizável de organização de treinos.
+
+## 🧠 Documentação do Projeto
+
+Antes de implementar features, o projeto foi melhor planejado e documentado.
+Esses arquivos descrevem o **problema**, o **fluxo central** e as decisões de arquitetura.
+
+| Documento                           | Descrição                           |
+| ----------------------------------- | ----------------------------------- |
+| [Overview](./docs/00-overview.md)   | Visão geral e objetivo do projeto   |
+| [Problem](./docs/01-problem.md)     | Problema real que o MoonFit resolve |
+| [Core Flow](./docs/02-core-flow.md) | Fluxo principal do usuário          |
+| [Entities](./docs/03-entities.md)   | Modelagem conceitual do domínio     |
+| [Ideas](./docs/05-ideas.md)         | Ideias futuras e experimentações    |
+
+> A documentação foi escrita a partir das minhas anotações pessoais e
+> organizada com auxílio de IA para melhorar clareza e estrutura.
 
 ---
 
@@ -21,6 +45,8 @@ moon-fit/
 ├── frontend/   # Interface web com React + Vite
 └── docs/       # Assets e documentação geral
 ```
+
+---
 
 | Parte    | Stack principal                    | README                                   |
 | -------- | ---------------------------------- | ---------------------------------------- |
@@ -36,5 +62,3 @@ moon-fit/
 - **Fase 3** — Migração para Fastify
 - **Fase 4** — Frontend completo
 - **Fase 5** — Deploy
-
----
