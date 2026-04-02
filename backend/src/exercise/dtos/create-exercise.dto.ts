@@ -9,7 +9,7 @@ export class CreateExerciseDTO {
   @IsString()
   description?: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsString()
   muscleGroup!: string;
 
