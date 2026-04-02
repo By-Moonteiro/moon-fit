@@ -10,59 +10,72 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  name      String?
-  email     String   @unique
-  password  String
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-
-  trainingSheets TrainingSheet[]
+  id           String        @id @default(cuid())
+  name         String?
+  email        String        @unique
+  password     String
+  createdAt    DateTime      @default(now()) @map("created_at")
+  updatedAt    DateTime      @updatedAt @map("updated_at")
+  workoutPlans WorkoutPlan[]
 
   @@map("users")
 }
 
-model TrainingSheet {
+model WorkoutPlan {
   id        String   @id @default(cuid())
-  sheetName String   @unique @map("sheet_name")
-  userId    String
+  name      String
+  endDate   DateTime @map("end_date")
+  status    String
+  userId    String   @map("user_id")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  user User @relation(fields: [userId], references: [id])
+  user         User          @relation(fields: [userId], references: [id])
+  trainingDays TrainingDay[]
 
-  trainingCategories TrainingCategory[]
-
-  @@map("training_sheets")
+  @@map("workout_plans")
 }
 
-model TrainingCategory {
-  id             String   @id @default(cuid())
-  sheetId        String   @map("sheet_id")
-  categoryName   String   @map("category_name")
-  completionDate DateTime @map("completion_date")
-  createdAt      DateTime @default(now()) @map("created_at")
-  updatedAt      DateTime @updatedAt @map("updated_at")
+model TrainingDay {
+  id            String   @id @default(cuid())
+  name          String
+  order         Int
+  workoutPlanId String   @map("workout_plan_id")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
 
-  trainingSheet TrainingSheet @relation(fields: [sheetId], references: [id])
-  exercises     Exercise[]
+  workoutPlan WorkoutPlan  @relation(fields: [workoutPlanId], references: [id])
+  workoutSets WorkoutSet[]
 
-  @@map("training_categories")
+  @@map("training_days")
+}
+
+model WorkoutSet {
+  id            String   @id @default(cuid())
+  exerciseId    String   @map("exercise_id")
+  trainingDayId String   @map("training_day_id")
+  repetitions   Int
+  weight        Float
+  restTime      Int      @map("rest_time")
+  order         Int
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  exercise    Exercise    @relation(fields: [exerciseId], references: [id])
+  trainingDay TrainingDay @relation(fields: [trainingDayId], references: [id])
+
+  @@map("workout_sets")
 }
 
 model Exercise {
-  id           String   @id @default(cuid())
-  categoryId   String   @map("category_id")
-  exerciseName String   @unique @map("exercise_name")
-  description  String?
-  series       Int?
-  repetitions  Int?
-  restTime     Int?     @map("rest_time")
-  isCompleted  Boolean  @default(false) @map("is_completed")
-  createdAt    DateTime @default(now()) @map("created_at")
-  updatedAt    DateTime @updatedAt @map("updated_at")
-
-  trainingCategory TrainingCategory @relation(fields: [categoryId], references: [id])
+  id                String       @id @default(cuid())
+  name              String       @unique @map("exercise_name")
+  description       String?
+  muscleGroup       String       @map("muscle_group")
+  executionMediaUrl String       @map("execution_media_url")
+  createdAt         DateTime     @default(now()) @map("created_at")
+  updatedAt         DateTime     @updatedAt @map("updated_at")
+  workoutSets       WorkoutSet[]
 
   @@map("exercises")
 }

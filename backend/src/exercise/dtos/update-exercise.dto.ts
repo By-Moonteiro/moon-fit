@@ -1,33 +1,24 @@
-import { IsBoolean, IsInt, IsOptional, IsString, Min } from 'class-validator';
+import { Transform } from 'class-transformer';
+import { IsOptional, IsString } from 'class-validator';
 
 export class UpdateExerciseDTO {
   @IsOptional()
   @IsString()
-  exerciseName?: string;
+  @Transform(({ value }) => value || undefined)
+  name?: string;
 
   @IsOptional()
   @IsString()
-  categoryId?: string;
-
-  @IsOptional()
-  @IsString()
+  @Transform(({ value }) => value || undefined)
   description?: string;
 
   @IsOptional()
-  @IsInt()
-  @Min(0)
-  series?: number;
-
-  @IsOptional()
-  @IsInt()
-  @Min(0)
-  repetitions?: number;
+  @IsString()
+  @Transform(({ value }) => value || undefined)
+  muscleGroup?: string;
 
   @IsOptional()
   @IsString()
-  restTime?: number;
-
-  @IsOptional()
-  @IsBoolean()
-  isCompleted?: boolean;
+  @Transform(({ value }) => value || undefined)
+  executionMediaUrl?: string;
 }

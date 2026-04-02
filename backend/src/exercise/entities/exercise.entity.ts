@@ -1,12 +1,9 @@
 export interface Exercise {
   id: string;
-  categoryId: string;
-  exerciseName: string;
+  name: string;
   description?: string | null;
-  series?: number | null;
-  repetitions?: number | null;
-  restTime?: number | null;
-  isCompleted?: boolean;
+  muscleGroup: string;
+  executionMediaUrl: string;
   createdAt: Date;
   updatedAt: Date;
 }
