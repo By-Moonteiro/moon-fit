@@ -22,35 +22,35 @@ export class PrismaExerciseRepository implements ExerciseRepository {
 
   async findByName(name: string): Promise<Exercise | null> {
     return this.prisma.exercise.findUnique({
-      where: { exerciseName: name },
+      where: { name },
     });
   }
 
-  async findByCompleted(isCompleted: boolean): Promise<Exercise[]> {
+  async findByMuscleGroup(muscleGroup: string): Promise<Exercise[]> {
     return this.prisma.exercise.findMany({
-      where: { isCompleted },
+      where: { muscleGroup },
     });
   }
 
   async findIfExists(
     name: string,
-    categoryId: string,
+    muscleGroup: string,
   ): Promise<Exercise | null> {
     return this.prisma.exercise.findFirst({
-      where: { exerciseName: name, categoryId },
+      where: { name, muscleGroup },
     });
   }
 
   async update(name: string, exercise: UpdateExerciseInput): Promise<Exercise> {
     return this.prisma.exercise.update({
-      where: { exerciseName: name },
+      where: { name },
       data: { ...exercise },
     });
   }
 
   async deleteByName(name: string): Promise<{ count: number }> {
     return this.prisma.exercise.deleteMany({
-      where: { exerciseName: name },
+      where: { name },
     });
   }
 }
