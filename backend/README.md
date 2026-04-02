@@ -54,8 +54,6 @@ src/
 │   └── auth.service.ts
 ├── users/
 ├── exercises/
-├── training_category/
-├── training_sheet/
 ├── prisma/                      # Módulo compartilhado do Prisma
 │   ├── prisma.module.ts
 │   └── prisma.service.ts
@@ -138,14 +136,13 @@ pnpm start:dev
 
 ### Exercises
 
-| Método   | Rota                               | Descrição                  | Auth |
-| -------- | ---------------------------------- | -------------------------- | ---- |
-| `POST`   | `/exercise/`                       | Registra exercício         | ✅   |
-| `GET`    | `/exercise/`                       | Buscar todos os exercícios | ✅   |
-| `GET`    | `/exercise/:name`                  | Buscar por nome            | ✅   |
-| `GET`    | `/exercise/completed/:isCompleted` | Filtrado por status        | ✅   |
-| `PATCH`  | `/exercise/:name`                  | Editar exercício           | ✅   |
-| `DELETE` | `/exercise/:name`                  | Apagar exercício           | ✅   |
+| Método   | Rota                                 | Descrição                                   | Auth |
+| -------- | ------------------------------------ | ------------------------------------------- | ---- |
+| `POST`   | `/exercise/`                         | Registrar exercício                         | ❌   |
+| `GET`    | `/exercise/`                         | Buscar todos os exercícios                  | ❌   |
+| `GET`    | `/exercise?name=...&muscleGroup=...` | Buscar por nome ou grupo muscular (ou os 2) | ❌   |
+| `PATCH`  | `/exercise/:name`                    | Editar exercício                            | ❌   |
+| `DELETE` | `/exercise/:name`                    | Apagar exercício                            | ❌   |
 
 ---
 
