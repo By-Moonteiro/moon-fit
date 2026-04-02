@@ -1,42 +1,19 @@
-import {
-  IsBoolean,
-  IsInt,
-  IsNotEmpty,
-  IsOptional,
-  IsString,
-  Min,
-  MinLength,
-} from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateExerciseDTO {
   @IsString()
   @IsNotEmpty()
-  exerciseName!: string;
-
-  @IsString()
-  @IsNotEmpty()
-  categoryId!: string;
+  name!: string;
 
   @IsOptional()
   @IsString()
   description?: string;
 
   @IsOptional()
-  @IsInt()
-  @Min(0)
-  series?: number;
-
-  @IsOptional()
-  @IsInt()
-  @Min(0)
-  repetitions?: number;
+  @IsString()
+  muscleGroup!: string;
 
   @IsOptional()
   @IsString()
-  @MinLength(0)
-  restTime?: number;
-
-  @IsOptional()
-  @IsBoolean()
-  isCompleted?: boolean;
+  executionMediaUrl!: string;
 }

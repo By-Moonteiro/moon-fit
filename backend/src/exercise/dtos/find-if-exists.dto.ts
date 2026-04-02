@@ -7,5 +7,5 @@ export class FindIfExistsDTO {
 
   @IsString()
   @IsNotEmpty()
-  categoryId!: string;
+  muscleGroup!: string;
 }
