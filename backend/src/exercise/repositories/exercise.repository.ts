@@ -9,9 +9,12 @@ export abstract class ExerciseRepository {
 
   abstract findAll(): Promise<Exercise[]>;
 
-  abstract findByName(name: string): Promise<Exercise | null>;
+  abstract findExerciseQuery(query: {
+    name?: string;
+    muscleGroup?: string;
+  }): Promise<Exercise[]>;
 
-  abstract findByMuscleGroup(muscleGroup: string): Promise<Exercise[]>;
+  abstract findByName(name: string): Promise<Exercise | null>;
 
   abstract findIfExists(
     name: string,

@@ -26,18 +26,21 @@ export class PrismaExerciseRepository implements ExerciseRepository {
     });
   }
 
-  async findByMuscleGroup(muscleGroup: string): Promise<Exercise[]> {
-    return this.prisma.exercise.findMany({
-      where: { muscleGroup },
-    });
-  }
-
   async findIfExists(
     name: string,
     muscleGroup: string,
   ): Promise<Exercise | null> {
     return this.prisma.exercise.findFirst({
       where: { name, muscleGroup },
+    });
+  }
+
+  async findExerciseQuery(query: {
+    name?: string;
+    muscleGroup?: string;
+  }): Promise<Exercise[]> {
+    return this.prisma.exercise.findMany({
+      where: query,
     });
   }
 
