@@ -1,7 +1,7 @@
 export interface Exercise {
   id: string;
   name: string;
-  description: string | null;
+  description?: string | null;
   muscleGroup: string;
   executionMediaUrl: string;
   createdAt: Date;
