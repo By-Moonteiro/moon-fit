@@ -6,11 +6,12 @@ import {
   Delete,
   Body,
   Param,
-  ParseBoolPipe,
+  Query,
 } from '@nestjs/common';
 import { ExerciseService } from './exercise.service';
 import { CreateExerciseDTO } from './dtos/create-exercise.dto';
 import { UpdateExerciseDTO } from './dtos/update-exercise.dto';
+import { GetExercisesFilterDTO } from './dtos/get-exercise.dto';
 
 @Controller('exercise')
 export class ExerciseController {
@@ -26,16 +27,9 @@ export class ExerciseController {
     return this.exerciseService.findAll();
   }
 
-  @Get(':name')
-  async findByName(@Param('name') name: string) {
-    return this.exerciseService.findByName(name);
-  }
-
-  @Get('completed/:isCompleted')
-  async findByCompleted(
-    @Param('isCompleted', ParseBoolPipe) isCompleted: boolean,
-  ) {
-    return this.exerciseService.findByCompleted(isCompleted);
+  @Get()
+  async findExerciseQuery(@Query() query: GetExercisesFilterDTO) {
+    return this.exerciseService.findExerciseQuery(query);
   }
 
   @Patch(':name')
