@@ -19,12 +19,28 @@ export class ExerciseService {
   ) {}
 
   async create(exercise: CreateExerciseInput): Promise<Exercise> {
-    await this.exerciseRepo.findIfExists(
-      exercise.exerciseName,
-      exercise.categoryId,
-    );
+    await this.findIfExists(exercise.name, exercise.muscleGroup);
 
-    return this.exerciseRepo.create(exercise);
+    const exerciseToCreate = {
+      ...exercise,
+      description:
+        exercise.description !== undefined ? exercise.description : null,
+    };
+
+    return this.exerciseRepo.create(exerciseToCreate);
+  }
+
+  async findIfExists(
+    name: string,
+    muscleGroup: string,
+  ): Promise<Exercise | null> {
+    const existing = await this.exerciseRepo.findIfExists(name, muscleGroup);
+
+    if (existing) {
+      throw new ConflictException();
+    }
+
+    return null;
   }
 
   async findAll(): Promise<Exercise[]> {
@@ -37,49 +53,45 @@ export class ExerciseService {
     if (!exercise) {
       throw new NotFoundException();
     }
-
     return exercise;
   }
 
-  async findByCompleted(isCompleted: boolean): Promise<Exercise[]> {
-    return this.exerciseRepo.findByCompleted(isCompleted);
-  }
+  async findExerciseQuery(query: {
+    name?: string;
+    muscleGroup?: string;
+  }): Promise<Exercise[]> {
+    const where = { name: '', muscleGroup: '' };
 
-  async findIfExists(name: string, categoryId: string): Promise<null> {
-    const exercise = await this.exerciseRepo.findIfExists(name, categoryId);
-
-    if (exercise) {
-      throw new ConflictException();
+    if (query.muscleGroup) {
+      where.muscleGroup = query.muscleGroup;
     }
 
-    return exercise;
+    if (query.name) {
+      where.name = query.name;
+    }
+
+    return this.exerciseRepo.findExerciseQuery(query);
   }
 
   async update(
-    name: string,
-    {
-      categoryId,
-      exerciseName,
-      description,
-      series,
-      repetitions,
-      restTime,
-      isCompleted,
-    }: UpdateExerciseInput,
+    exerciseName: string,
+    { name, description, muscleGroup, executionMediaUrl }: UpdateExerciseInput,
   ): Promise<Exercise> {
-    await this.exerciseRepo.findByName(name);
+    const existing = await this.findByName(exerciseName);
 
     const exercise = {
-      exerciseName: exerciseName ? exerciseName : name,
-      categoryId: categoryId,
-      description: description !== undefined ? description : null,
-      series: series !== undefined ? series : null,
-      repetitions: repetitions !== undefined ? repetitions : null,
-      restTime: restTime !== undefined ? restTime : null,
-      isCompleted: isCompleted ?? false,
+      name: name !== undefined ? name : exerciseName,
+      description:
+        description !== undefined ? description : existing.description,
+      muscleGroup:
+        muscleGroup !== undefined ? muscleGroup : existing.muscleGroup,
+      executionMediaUrl:
+        executionMediaUrl !== undefined
+          ? executionMediaUrl
+          : existing.executionMediaUrl,
     };
 
-    return this.exerciseRepo.update(name, exercise);
+    return this.exerciseRepo.update(exerciseName, exercise);
   }
 
   async deleteByName(name: string): Promise<{ count: number }> {
