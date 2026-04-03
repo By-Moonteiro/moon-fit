@@ -58,10 +58,12 @@ export class AuthService {
       throw new UnauthorizedException();
     }
 
-    const payload = { sub: user.id, email: user.email };
+    const { accessToken, refreshToken } = this.generateTokens(
+      user.id,
+      user.email,
+    );
+    await this.saveRefreshToken(user.id, refreshToken);
 
-    return {
-      access_token: this.jwtService.sign(payload),
-    };
+    return { accessToken, refreshToken };
   }
 }
