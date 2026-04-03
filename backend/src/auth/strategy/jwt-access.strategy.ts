@@ -2,15 +2,15 @@ import { Strategy } from 'passport-jwt';
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ConfigService } from '@nestjs/config';
-import type { Request } from 'express';
+import { RequestWithCookies } from '../dtos/types/request-with-cookie';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(configService: ConfigService) {
     super({
-      jwtFromRequest: (req: Request) => req?.cookies?.access_token ?? null,
+      jwtFromRequest: (req: RequestWithCookies) =>
+        req?.cookies?.access_token ?? null,
       secretOrKey: configService.get<string>('JWT_SECRET')!,
-      passReqToCallback: true,
       ignoreExpiration: false,
     });
   }
