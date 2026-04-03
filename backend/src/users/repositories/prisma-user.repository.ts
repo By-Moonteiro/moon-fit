@@ -24,6 +24,7 @@ export class PrismaUserRepository implements UsersRepository {
         id: true,
         name: true,
         email: true,
+        refreshToken: true,
         createdAt: true,
         updatedAt: true,
       },
@@ -75,7 +76,7 @@ export class PrismaUserRepository implements UsersRepository {
 
   async updateRefreshToken(
     userId: string,
-    refreshToken: string,
+    refreshToken: string | null,
   ): Promise<void> {
     await this.prisma.user.update({
       where: { id: userId },

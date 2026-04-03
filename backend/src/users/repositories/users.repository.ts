@@ -23,7 +23,7 @@ export abstract class UsersRepository {
 
   abstract updateRefreshToken(
     userId: string,
-    refreshToken: string,
+    refreshToken: string | null,
   ): Promise<void>;
 
   abstract delete(userId: string): Promise<void>;

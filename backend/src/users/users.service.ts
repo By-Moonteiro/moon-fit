@@ -70,7 +70,7 @@ export class UsersService {
     return this.userRepo.update(userEmail, data);
   }
 
-  async updateRefreshToken(userId: string, refreshToken: string) {
+  async updateRefreshToken(userId: string, refreshToken: string | null) {
     await this.findById(userId);
 
     return this.userRepo.updateRefreshToken(userId, refreshToken);
