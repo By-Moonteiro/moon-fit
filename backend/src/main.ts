@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { apiReference } from '@scalar/nestjs-api-reference';
+import scalarReference from '@scalar/fastify-api-reference';
 import { ConfigService } from '@nestjs/config';
 import fastifyCookie from '@fastify/cookie';
 import {
@@ -40,7 +40,13 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, config);
 
-  app.use('/docs', apiReference({ content: document, theme: 'deepSpace' }));
+  await app.register(scalarReference, {
+    routePrefix: '/docs',
+    configuration: {
+      content: document,
+      theme: 'deepSpace',
+    },
+  });
 
   const port = configService.get<number>('PORT')!;
   await app.listen(port, '0.0.0.0');
