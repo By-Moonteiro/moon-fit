@@ -121,10 +121,12 @@ pnpm start:dev
 
 ### Auth
 
-| Método | Rota             | Descrição         | Auth |
-| ------ | ---------------- | ----------------- | ---- |
-| `POST` | `/auth/register` | Registrar usuário | ❌   |
-| `POST` | `/auth/login`    | Login             | ❌   |
+| Método | Rota             | Descrição                                           | Auth |
+| ------ | ---------------- | --------------------------------------------------- | ---- |
+| `POST` | `/auth/register` | Registrar usuário                                   | ❌   |
+| `POST` | `/auth/login`    | Login                                               | ❌   |
+| `POST` | `/auth/refresh`  | Gera um novo access e refresh token                 | ✅   |
+| `POST` | `/auth/logout`   | Invalida o refresh token após o usuário desconectar | ✅   |
 
 ### Users
 
