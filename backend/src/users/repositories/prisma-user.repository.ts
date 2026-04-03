@@ -73,6 +73,18 @@ export class PrismaUserRepository implements UsersRepository {
     });
   }
 
+  async updateRefreshToken(
+    userId: string,
+    refreshToken: string,
+  ): Promise<void> {
+    await this.prisma.user.update({
+      where: { id: userId },
+      data: {
+        refreshToken,
+      },
+    });
+  }
+
   async delete(userId: string): Promise<void> {
     await this.prisma.user.deleteMany({
       where: { id: userId },

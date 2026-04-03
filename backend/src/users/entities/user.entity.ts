@@ -3,6 +3,7 @@ export interface User {
   name: string | null;
   email: string;
   password: string;
+  refreshToken?: string | null;
   createdAt: Date;
   updatedAt: Date;
 }

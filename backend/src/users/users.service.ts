@@ -70,6 +70,12 @@ export class UsersService {
     return this.userRepo.update(userEmail, data);
   }
 
+  async updateRefreshToken(userId: string, refreshToken: string) {
+    await this.findById(userId);
+
+    return this.userRepo.updateRefreshToken(userId, refreshToken);
+  }
+
   async delete(userId: string) {
     const existingUser = await this.userRepo.findById(userId);
 
