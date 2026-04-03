@@ -21,5 +21,10 @@ export abstract class UsersRepository {
     { name, email, password }: UpdateUserData,
   ): Promise<UserResponse>;
 
+  abstract updateRefreshToken(
+    userId: string,
+    refreshToken: string | null,
+  ): Promise<void>;
+
   abstract delete(userId: string): Promise<void>;
 }
