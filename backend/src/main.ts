@@ -4,7 +4,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { apiReference } from '@scalar/nestjs-api-reference';
 import { ConfigService } from '@nestjs/config';
-import cookie from '@fastify/cookie';
+import fastifyCookie from '@fastify/cookie';
 import {
   FastifyAdapter,
   type NestFastifyApplication,
@@ -16,48 +16,33 @@ async function bootstrap() {
     new FastifyAdapter(),
   );
 
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist: true,
-      transform: true,
-    }),
-  );
+  const configService = app.get(ConfigService);
 
-  await app.register(cookie);
+  await app.register(fastifyCookie);
+
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
 
   app.enableCors({
-    origin: 'http://localhost:5173',
+    origin: configService.get<string>('FRONTEND_URL'),
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    credentials: true,
   });
 
-  // Swagger config
   const config = new DocumentBuilder()
     .setTitle('MoonFit')
     .setDescription('Docs for MoonFit Project')
     .setVersion('1.0')
     .addBearerAuth(
-      {
-        type: 'http',
-        scheme: 'bearer',
-        bearerFormat: 'JWT',
-      },
+      { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
       'access-token',
     )
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
 
-  app.use(
-    '/docs',
-    apiReference({
-      content: document,
-      theme: 'deepSpace',
-    }),
-  );
+  app.use('/docs', apiReference({ content: document, theme: 'deepSpace' }));
 
-  const configService = app.get(ConfigService);
   const port = configService.get<number>('PORT')!;
-
   await app.listen(port, '0.0.0.0');
 }
 
