@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
   Patch,
   UseGuards,
 } from '@nestjs/common';
@@ -33,6 +34,7 @@ export class UsersController {
   }
 
   @Delete()
+  @HttpCode(204)
   async delete(@CurrentUser() user: CurrentUserDto) {
     return this.usersService.delete(user.id);
   }

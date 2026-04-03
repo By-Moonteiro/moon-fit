@@ -7,6 +7,7 @@ import {
   Body,
   Param,
   Query,
+  HttpCode,
 } from '@nestjs/common';
 import { ExerciseService } from './exercise.service';
 import { CreateExerciseDTO } from './dtos/create-exercise.dto';
@@ -41,6 +42,7 @@ export class ExerciseController {
   }
 
   @Delete(':name')
+  @HttpCode(204)
   async delete(@Param('name') name: string) {
     return this.exerciseService.deleteByName(name);
   }
