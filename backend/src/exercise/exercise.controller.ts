@@ -24,13 +24,8 @@ export class ExerciseController {
   }
 
   @Get()
-  async findAll() {
-    return this.exerciseService.findAll();
-  }
-
-  @Get()
-  async findExerciseQuery(@Query() query: GetExercisesFilterDTO) {
-    return this.exerciseService.findExerciseQuery(query);
+  async findAll(@Query() query: GetExercisesFilterDTO) {
+    return this.exerciseService.findAll(query);
   }
 
   @Patch(':name')

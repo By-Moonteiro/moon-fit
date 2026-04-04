@@ -43,7 +43,17 @@ export class ExerciseService {
     return null;
   }
 
-  async findAll(): Promise<Exercise[]> {
+  async findAll(query?: {
+    name?: string;
+    muscleGroup?: string;
+  }): Promise<Exercise[]> {
+    const hasFilters =
+      query && Object.values(query).some((v) => v !== undefined);
+
+    if (hasFilters) {
+      return this.exerciseRepo.findExerciseQuery(query);
+    }
+
     return this.exerciseRepo.findAll();
   }
 
@@ -54,23 +64,6 @@ export class ExerciseService {
       throw new NotFoundException();
     }
     return exercise;
-  }
-
-  async findExerciseQuery(query: {
-    name?: string;
-    muscleGroup?: string;
-  }): Promise<Exercise[]> {
-    const where = { name: '', muscleGroup: '' };
-
-    if (query.muscleGroup) {
-      where.muscleGroup = query.muscleGroup;
-    }
-
-    if (query.name) {
-      where.name = query.name;
-    }
-
-    return this.exerciseRepo.findExerciseQuery(query);
   }
 
   async update(
