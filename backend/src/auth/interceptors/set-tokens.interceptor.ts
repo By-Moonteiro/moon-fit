@@ -24,6 +24,7 @@ export class SetTokensInterceptor implements NestInterceptor {
           httpOnly: true,
           secure: process.env.NODE_ENV === 'production',
           sameSite: 'strict' as const,
+          path: '/',
         };
 
         if (data.accessToken && data.refreshToken) {
