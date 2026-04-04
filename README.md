@@ -58,6 +58,6 @@ moon-fit/
 
 - **Fase 1** — Base da API (auth, usuários, fichas) ← _atualmente_
 - **Fase 2** — Testes e validações robustas
-- **Fase 3** — Migração para Fastify
+- **Fase 3** — Migração para Fastify ✅
 - **Fase 4** — Frontend completo
-- **Fase 5** — Deploy
+- **Fase 5** — Deploy ✅ (Fly.io & Vercel)
