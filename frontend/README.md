@@ -75,7 +75,7 @@ src/
 
 ## 🚀 Como Executar
 
-### Pré-requisitos
+### Pré-requisitos (localmente)
 
 - Node.js 24 LTS
 - pnpm
@@ -107,7 +107,7 @@ cp .env.example .env
 pnpm dev
 ```
 
-✅ App disponível em `http://localhost:5173`
+✅ App disponível em `https://moon-fit.vercel.app/`
 
 ---
 
@@ -137,5 +137,6 @@ VITE_API_URL=http://localhost:3333
 - [x] Validação de schemas com Zod
 - [x] Requisições e cache com TanStack Query + Axios
 - [x] Roteamento com React Router
+- [x] Deploy na Vercel
 
 ---
