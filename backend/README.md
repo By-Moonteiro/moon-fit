@@ -47,8 +47,9 @@ src/
 ├── auth/                        # Módulo de autenticação
 │   ├── decorators/              # @CurrentUser e outros
 │   ├── dtos/
-│   ├── guards/                  # JwtAuthGuard
-│   ├── strategy/                # JWT Strategy (Passport)
+│   ├── guards/                  # JwtAuthGuard & JwtRefreshGuard
+│   ├── interceptors/            # SetCookie Interceptor
+│   ├── strategy/                # JWT Strategies (Passport)
 │   ├── auth.controller.ts
 │   ├── auth.module.ts
 │   └── auth.service.ts
@@ -158,9 +159,11 @@ DB_NAME=moonfit
 
 # Prisma
 DATABASE_URL="postgresql://postgres:SUA_SENHA@localhost:5432/moon-fit?schema=public"
+FRONTEND_URL=http://localhost:5173
 
 # JWT
 JWT_SECRET=sua_chave_secreta
+JWT_REFRESH_SECRET=um_secret_diferente_e_longo_aqui
 
 # App
 PORT=3333
@@ -192,5 +195,8 @@ docker compose down -v && docker compose up -d
 - [x] Validação com class-validator
 - [x] Documentação da API com Swagger + Scalar
 - [x] Uso de ferramentas de IA (Claude, Copilot) como apoio no aprendizado
+- [x] Refresh token rotation
+- [x] Armazenamento de tokens por HttpOnly Cookies
+- [x] Interceptors no Nest
 
 ---
