@@ -60,4 +60,4 @@ moon-fit/
 - **Fase 2** — Testes e validações robustas
 - **Fase 3** — Migração para Fastify ✅
 - **Fase 4** — Frontend completo
-- **Fase 5** — Deploy ✅ (Fly.io & Vercel)
+- **Fase 5** — Deploy ✅ (Render & Vercel)

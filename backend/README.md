@@ -69,7 +69,7 @@ src/
 
 ## 🚀 Como Executar
 
-### Pré-requisitos
+### Pré-requisitos (localmente)
 
 - Node.js 24 LTS
 - pnpm
@@ -113,8 +113,8 @@ pnpm prisma:migrate
 pnpm start:dev
 ```
 
-✅ API disponível em `http://localhost:3333`  
-✅ Documentação interativa em `http://localhost:3333/docs`
+✅ API disponível em `https://moon-fit-backend.onrender.com/`  
+✅ Documentação interativa em `https://moon-fit-backend.onrender.com/docs`
 
 ---
 
@@ -149,7 +149,7 @@ pnpm start:dev
 
 ---
 
-## 📝 Variáveis de Ambiente
+## 📝 Variáveis de Ambiente (localmente)
 
 ```env
 # Banco de dados
@@ -198,5 +198,6 @@ docker compose down -v && docker compose up -d
 - [x] Refresh token rotation
 - [x] Armazenamento de tokens por HttpOnly Cookies
 - [x] Interceptors no Nest
+- [x] Deploy com Render
 
 ---
