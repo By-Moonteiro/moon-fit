@@ -29,4 +29,4 @@ COPY package.json ./
 
 EXPOSE 3333
 
-CMD ["node", "dist/src/main.js"]
+CMD ["sh", "-c", "./node_modules/.bin/prisma migrate deploy && node dist/src/main.js"]
